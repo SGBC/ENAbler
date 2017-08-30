@@ -1,0 +1,13 @@
+language: python
+python:
+- '2.7'
+- '3.6'
+install:
+- pip install --upgrade pip setuptools wheel
+- pip install .
+- pip install nose codecov
+script: nosetests --with-coverage --cover-package=enabler
+after_success:
+- codecov
+notifications:
+    email: false
