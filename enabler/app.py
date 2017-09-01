@@ -3,9 +3,7 @@
 import logging
 import argparse
 
-
-def upload(args):
-    print('Hello, world!')
+from enabler.upload import upload
 
 
 def main():
