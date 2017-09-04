@@ -42,6 +42,7 @@ def main():
         '--input',
         '-i',
         metavar='',
+        required=True,
         help='input directory'
     )
     parser_upload._optionals.title = 'arguments'
