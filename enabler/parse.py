@@ -2,7 +2,8 @@
 
 """General file reading utilities for the enabler program"""
 
-import haslib
+import os
+import hashlib
 import logging
 
 
@@ -39,5 +40,18 @@ def calc_md5(infile, block_size=256*128):
     md5 = hashlib.md5()
     with open(infile, 'rb') as f:
         for chunk in iter(lambda: f.read(block_size), b''):
-            file_md5.update(chunk)
-    return md5
+            md5.update(chunk)
+    return md5.hexdigest()
+
+
+def md5_to_file(infile, md5):
+    """Write md5 to a file
+    """
+    logger = logging.getLogger(__name__)
+    if not os.path.exists(infile + '.md5'):
+        with open(infile + '.md5', 'w') as outfile:
+            filename = infile.split('/')[-1]
+            string = md5 + '  ' + filename + '\n'
+            outfile.write(string)
+    else:
+        logger.debug('%s already exists' % infile + '.md5')

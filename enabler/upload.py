@@ -27,11 +27,14 @@ def upload(args):
         for f in file_list:
             try:
                 assert os.stat(f).st_size != 0
+                if f.endswith('.md5'):
+                    continue
             except AssertionError as e:
                 logger.error('file is empty: %s' % f)
             else:
                 compressed_f = compress(f)
                 md5 = parse.calc_md5(compressed_f)
+                parse.md5_to_file(compressed_f, md5)
     # TODO
     # - upload with ftp
 
