@@ -31,8 +31,8 @@ def upload(args):
                 logger.error('file is empty: %s' % f)
             else:
                 compressed_f = compress(f)
+                md5 = parse.calc_md5(compressed_f)
     # TODO
-    # - calculate md5
     # - upload with ftp
 
 
