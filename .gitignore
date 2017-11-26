@@ -17,3 +17,6 @@ ENV/
 # test stuff
 test_runs/
 *md5
+
+# coverage
+.coverage
