@@ -1,6 +1,7 @@
 # ENAbler
 
 [![Build Status](https://travis-ci.org/SGBC/ENAbler.svg?branch=master)](https://travis-ci.org/SGBC/ENAbler)
+[![codecov](https://codecov.io/gh/SGBC/ENAbler/branch/master/graph/badge.svg)](https://codecov.io/gh/SGBC/ENAbler)
 
 ## programmatic ENA submission
 
