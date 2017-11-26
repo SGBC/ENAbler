@@ -3,11 +3,15 @@
 
 import os
 import logging
+import getpass
+import requests
 
 import xml.etree.ElementTree as et
 
 
 template_dir = os.path.dirname(__file__) + '/templates/'
+
+test_service = 'https://www-test.ebi.ac.uk/ena/submit/drop-box/submit/'
 
 
 def submit(args):
@@ -18,7 +22,17 @@ def submit(args):
     # logger.error('This function is not available yet')
 
     action = args.action.upper()
-    write_submission_xml(args.output, action)
+    # write_submission_xml(args.output, action)
+
+    # xml file dict
+    files = {'SUBMISSION': open('test_runs/submission.xml')}
+
+    # authentification
+    user = args.username if args.username else input('Username: ')
+    password = getpass.getpass(prompt='Password for %s: ' % user)
+
+    r = requests.post(test_service, auth=(user, password), files=files)
+    print(r.text)
 
 
 def write_submission_xml(output_dir, action='ADD', release='RELEASE', date=''):

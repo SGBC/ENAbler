@@ -72,6 +72,11 @@ def main():
         help='enable debug logging. (default: %(default)s).'
     )
     parser_submit.add_argument(
+        '--username',
+        '-u',
+        help='Your webin username'
+    )
+    parser_submit.add_argument(
         '--action',
         '-a',
         choices=['add', 'modify', 'release', 'validate'],
