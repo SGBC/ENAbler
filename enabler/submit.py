@@ -17,7 +17,8 @@ def submit(args):
     logger.debug('Using verbose logger')
     # logger.error('This function is not available yet')
 
-    write_submission_xml(args.output)
+    action = args.action.upper()
+    write_submission_xml(args.output, action)
 
 
 def write_submission_xml(output_dir, action='ADD', release='RELEASE', date=''):
@@ -29,14 +30,16 @@ def write_submission_xml(output_dir, action='ADD', release='RELEASE', date=''):
     action_string = '<ACTION><%s /></ACTION>' % action
     add_action = et.fromstring(action_string)
 
-    release_string = '<ACTION><%s /></ACTION>' % release
-    add_release = et.fromstring(release_string)
+    if action == 'ADD':
+        release_string = '<ACTION><%s /></ACTION>' % release
+        add_release = et.fromstring(release_string)
 
     tree = et.parse(submission_xml)
     root = tree.getroot()
 
     for actions in root.iter('ACTIONS'):
         actions.append(add_action)
-        actions.append(add_release)
+        if action == 'ADD':
+            actions.append(add_release)
 
     tree.write(output_dir + 'submission.xml')
