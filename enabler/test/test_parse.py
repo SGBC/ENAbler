@@ -24,3 +24,9 @@ def test_md5_to_file():
     with open(gzipped_file + '.md5') as f:
         lm = f.readlines()
         assert lm == ['d7e4bdf56d258837ca3b234fbba63620  ecoli_R1.fastq.gz\n']
+
+
+def test_compress():
+    input_file = 'data/a_nonempty_file'
+    gzipped_file = parse.compress(input_file)
+    assert gzipped_file == 'data/a_nonempty_file.gz'

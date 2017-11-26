@@ -4,6 +4,7 @@
 """General file reading utilities for the enabler program"""
 
 import os
+import gzip
 import hashlib
 import logging
 
@@ -56,3 +57,15 @@ def md5_to_file(infile, md5):
             outfile.write(string)
     else:
         logger.debug('%s already exists' % infile + '.md5')
+
+
+def compress(infile):
+    """Gzip a file
+    """
+    if is_gzipped(infile):
+        return infile
+    else:
+        outfile = infile + '.gz'
+        with open(infile, 'rb') as i, gzip.open(outfile, 'wb') as o:
+            o.writelines(i)
+        return outfile

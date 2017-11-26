@@ -17,6 +17,7 @@ ENV/
 # test stuff
 test_runs/
 *md5
+a_nonempty_file.gz
 
 # coverage
 .coverage
