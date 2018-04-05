@@ -33,7 +33,25 @@ def submission(output_dir, action='ADD', release='RELEASE', date=''):
     tree.write(output_dir + 'submission.xml')
 
 
-def project(output_dir):
+def project(output_dir, title, unique_name, description='short abstract'):
+    """This function writes the project XML
     """
-    """
-    pass
+    logger = logging.getLogger(__name__)
+    project_xml = template_dir + 'project.xml'
+
+    title_string = '<TITLE>%s</TITLE>' % title
+    add_title = et.fromstring(title_string)
+
+    description_string = '<DESCRIPTION>%s</DESCRIPTION>' % description
+    add_description = et.fromstring(description_string)
+
+    tree = et.parse(project_xml)
+    root = tree.getroot()
+
+    et.SubElement(root, 'PROJECT').set('alias', unique_name)
+
+    for project in root.iter('PROJECT'):
+        project.append(add_title)
+        project.append(add_description)
+
+    tree.write(output_dir + 'project.xml')

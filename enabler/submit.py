@@ -25,7 +25,10 @@ def submit(args):
     # write_submission_xml(args.output, action)
 
     # xml file dict
-    files = {'SUBMISSION': open('test_runs/submission.xml')}
+    files = {
+        'SUBMISSION': open('%s/submission.xml' % args.output),
+        'PROJECT': open('%s/project.xml' % args.output)
+    }
 
     # authentification
     user = args.username if args.username else input('Username: ')
