@@ -1,0 +1,2 @@
+id  title   taxon_id    collection date location
+ecoli   ecoli test sample   562 2018    Uppsala

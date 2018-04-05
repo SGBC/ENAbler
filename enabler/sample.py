@@ -2,14 +2,18 @@
 # -*- coding: utf-8 -*-
 
 import os
+import csv
 import sys
+import copy
 import logging
 
 
 class SampleCollection(object):
     """a collection of sample"""
-    def __init__(self, samples):
-        self.samples = samples
+    def __init__(self, sample_file):
+        self.sample_file = sample_file
+        self.samples = []
+        self.parse_sample_file(self.sample_file)
 
     @property
     def logger(self):
@@ -21,9 +25,13 @@ class SampleCollection(object):
         """parse sample file"""
         ext = os.path.splitext(os.path.basename(file_path))[1]
         if ext == '.csv':
-            pass
-        elif ext == '.txt' or ext == '.tsv' or ext == '.tab':
-            pass
+            with open(file_path, newline='') as csvfile:
+                reader = csv.reader(csvfile, delimiter=',')
+                header = reader.__next__()
+                for line in reader:
+                    self.samples.append(Sample(header, line))
+        # elif ext == '.txt' or ext == '.tsv' or ext == '.tab':
+        #     pass
         else:
             logger.error(
                 f'{ext!r} is not a supported file extension. Aborting')
@@ -33,9 +41,16 @@ class SampleCollection(object):
 class Sample(object):
     """a sample"""
     def __init__(self, header, line):
-        info_dict = sample_parser(header, line)
-        self.arg = arg
+        self.init_sample(header, line)
 
-    @staticmethod
-    def sample_parser(header, line):
-        pass
+    @classmethod
+    def init_sample(self, header, line):
+        sample_dict = {field: value for field, value in zip(header, line)}
+        self.fields = copy.deepcopy(sample_dict)
+        self.id = sample_dict['id']
+        self.title = sample_dict['title']
+        self.taxon = sample_dict['taxon_id']
+        del sample_dict['id']
+        del sample_dict['title']
+        del sample_dict['taxon_id']
+        self.attributes = sample_dict
