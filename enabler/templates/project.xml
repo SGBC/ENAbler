@@ -1,6 +1,8 @@
 <PROJECT_SET>
    <PROJECT>
-       <!--  Here go the TITLE and DESCRIPTION fields. Both fields are free text-->
+       <!--  Here go the TITLE and DESCRIPTION fields. Both fields are free
+       text. Additionally PROJECT needs an alias attribute
+        -->
       <SUBMISSION_PROJECT>
          <SEQUENCING_PROJECT/>
       </SUBMISSION_PROJECT>

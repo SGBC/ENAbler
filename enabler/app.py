@@ -84,6 +84,23 @@ def main():
         help='action to perform. (default: %(default)s).'
     )
     parser_submit.add_argument(
+        '--title',
+        '-t',
+        help='title of your study',
+        required=True
+    )
+    parser_submit.add_argument(
+        '--name',
+        '-n',
+        help='Unique name for your study. Will be a random string of 5 \
+            characters if not specified.',
+    )
+    parser_submit.add_argument(
+        '--samples',
+        '-s',
+        help='sample information in tabular or csv format'
+    )
+    parser_submit.add_argument(
         '--output',
         '-o',
         required=True,

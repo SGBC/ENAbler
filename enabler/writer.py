@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import logging
 
 import xml.etree.ElementTree as et
@@ -55,3 +56,24 @@ def project(output_dir, title, unique_name, description='short abstract'):
         project.append(add_description)
 
     tree.write(output_dir + 'project.xml')
+
+
+def sample(output_dir, samples):
+    """This function writes the sample xml
+    """
+    logger = logging.getLogger(__name__)
+    sample_xml = template_dir + 'sample.xml'
+
+    tree = et.parse(sample_xml)
+    root = tree.getroot()
+
+    # TODO parse sample cheet in sample Class
+
+    for sample in samples:
+        s = et.SubElement(root, 'SAMPLE', attrib={"alias": sample_name})
+        et.SubElement(s, 'TITLE', value=title)
+        n = et.SubElement(s, 'SAMPLE_NAME')
+        et.SubElement(n, 'TAXDON_ID', value=taxid)
+
+        for attribute in sample.attributes:
+            pass
