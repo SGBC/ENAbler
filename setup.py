@@ -18,7 +18,6 @@ setup(
     packages=find_packages(),
 
     tests_require=['nose'],
-    install_requires=['future'],
     include_package_data=True,
 
     entry_points={
