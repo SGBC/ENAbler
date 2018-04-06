@@ -17,7 +17,8 @@ setup(
     license='MIT',
     packages=find_packages(),
 
-    tests_require=['nose'],
+    tests_require=['nose', 'codecov'],
+    install_requires=['requests']
     include_package_data=True,
 
     entry_points={
