@@ -1,12 +1,13 @@
 language: python
 python:
-- '3.6'
+    - '3.6'
 install:
-- pip install --upgrade pip setuptools wheel
-- pip install .
-- pip install nose codecov
-script: nosetests --with-coverage --cover-package=enabler
+    - pip install --upgrade pip setuptools wheel
+    - pip install pipenv
+    - pipenv install -d
+script:
+    - pipenv run test
 after_success:
-- codecov
+    - codecov
 notifications:
     email: false
