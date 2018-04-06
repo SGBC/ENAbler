@@ -26,13 +26,14 @@ def submit(args):
 
     # xml file dict
     files = {
-        'SUBMISSION': open('%s/submission.xml' % args.output),
-        'PROJECT': open('%s/project.xml' % args.output)
+        'SUBMISSION': open(f'{args.output}/submission.xml'),
+        'PROJECT': open(f'{args.output}/project.xml'),
+        'SAMPLE': open(f'{args.output}/sample.xml')
     }
 
     # authentification
     user = args.username if args.username else input('Username: ')
-    password = getpass.getpass(prompt='Password for %s: ' % user)
+    password = getpass.getpass(prompt=f'Password for {user}: ')
 
     r = requests.post(test_service, auth=(user, password), files=files)
     print(r.text)

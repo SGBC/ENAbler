@@ -20,10 +20,10 @@ def is_gzipped(infile):
         try:
             assert f.read(2) == magic_number
         except AssertionError as e:
-            logger.info('%s is not gzipped' % infile)
+            logger.info(f'{infile} is not gzipped')
             return False
         else:
-            logger.debug('%s is gzipped' % infile)
+            logger.debug(f'{infile} is gzipped')
             return True
 
 
@@ -38,7 +38,7 @@ def calc_md5(infile, block_size=256*128):
         str: md5 sum of the inout file
     """
     logger = logging.getLogger(__name__)
-    logger.info('Calculating md5 of %s' % infile)
+    logger.info(f'Calculating md5 of {infile}')
     md5 = hashlib.md5()
     with open(infile, 'rb') as f:
         for chunk in iter(lambda: f.read(block_size), b''):
@@ -56,7 +56,7 @@ def md5_to_file(infile, md5):
             string = md5 + '  ' + filename + '\n'
             outfile.write(string)
     else:
-        logger.debug('%s already exists' % infile + '.md5')
+        logger.debug(f'{infile}.md5 already exists')
 
 
 def compress(infile):

@@ -31,14 +31,14 @@ def main():
         '-q',
         action='store_true',
         default=False,
-        help='disable info logging. (default: %(default)s).'
+        help=f'disable info logging. (default: {default}).'
     )
     param_logging_u.add_argument(
         '--debug',
         '-d',
         action='store_true',
         default=False,
-        help='enable debug logging. (default: %(default)s).'
+        help=f'enable debug logging. (default: {default}).'
     )
     parser_upload.add_argument(
         '--input',
@@ -62,14 +62,14 @@ def main():
         '-q',
         action='store_true',
         default=False,
-        help='disable info logging. (default: %(default)s).'
+        help=f'disable info logging. (default: {default}).'
     )
     param_logging_s.add_argument(
         '--debug',
         '-d',
         action='store_true',
         default=False,
-        help='enable debug logging. (default: %(default)s).'
+        help=f'enable debug logging. (default: {default}).'
     )
     parser_submit.add_argument(
         '--username',
@@ -81,7 +81,7 @@ def main():
         '-a',
         choices=['add', 'modify', 'release', 'validate'],
         default='add',
-        help='action to perform. (default: %(default)s).'
+        help=f'action to perform. (default: {default}).'
     )
     parser_submit.add_argument(
         '--title',

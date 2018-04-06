@@ -16,11 +16,11 @@ def submission(output_dir, action='ADD', release='RELEASE', date=''):
     logger = logging.getLogger(__name__)
     submission_xml = template_dir + 'submission.xml'
 
-    action_string = '<ACTION><%s /></ACTION>' % action
+    action_string = f'<ACTION><{action} /></ACTION>'
     add_action = et.fromstring(action_string)
 
     if action == 'ADD':
-        release_string = '<ACTION><%s /></ACTION>' % release
+        release_string = f'<ACTION><{release} /></ACTION>'
         add_release = et.fromstring(release_string)
 
     tree = et.parse(submission_xml)
@@ -40,10 +40,10 @@ def project(output_dir, title, unique_name, description='short abstract'):
     logger = logging.getLogger(__name__)
     project_xml = template_dir + 'project.xml'
 
-    title_string = '<TITLE>%s</TITLE>' % title
+    title_string = f'<TITLE>{title}</TITLE>'
     add_title = et.fromstring(title_string)
 
-    description_string = '<DESCRIPTION>%s</DESCRIPTION>' % description
+    description_string = f'<DESCRIPTION>{description}</DESCRIPTION>'
     add_description = et.fromstring(description_string)
 
     tree = et.parse(project_xml)

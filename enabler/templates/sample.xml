@@ -1,5 +1,5 @@
 <SAMPLE_SET>
-    <SAMPLE>
+    <!-- <SAMPLE> -->
     <!--  SAMPLE needs an alias attribute which is the name of the sample
     Samples also need a TITLE, a TAXON_ID
     Sample attributes are optional and will be added as TAG VALUE fields if
@@ -15,5 +15,5 @@
                 <VALUE>2010</VALUE>
             </SAMPLE_ATTRIBUTE>
         </SAMPLE_ATTRIBUTES> -->
-    </SAMPLE>
+    <!-- </SAMPLE> -->
 </SAMPLE_SET>
