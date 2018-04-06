@@ -67,13 +67,18 @@ def sample(output_dir, samples):
     tree = et.parse(sample_xml)
     root = tree.getroot()
 
-    # TODO parse sample cheet in sample Class
-
     for sample in samples:
-        s = et.SubElement(root, 'SAMPLE', attrib={"alias": sample_name})
-        et.SubElement(s, 'TITLE', value=title)
+        s = et.SubElement(root, 'SAMPLE', attrib={"alias": sample.id})
+        et.SubElement(s, 'TITLE', value=sample.title)
         n = et.SubElement(s, 'SAMPLE_NAME')
-        et.SubElement(n, 'TAXDON_ID', value=taxid)
+        et.SubElement(n, 'TAXDON_ID', value=sample.taxon_id)
 
-        for attribute in sample.attributes:
-            pass
+        if sample.attributes:
+            attributes = et.SubElement(s, 'SAMPLE_ATTRIBUTES')
+
+        for tag, value in sample.attributes.items():
+            attribute = et.SubElement(attributes, 'SAMPLE_ATTRIBUTE')
+            et.SubElement(attribute, 'TAG', value=tag)
+            et.SubElement(attribute, 'VALUE', value=value)
+
+    tree.write(output_dir + 'sample.xml')
